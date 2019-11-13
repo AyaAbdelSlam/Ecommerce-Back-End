@@ -2,7 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ECommerce.Core;
+using ECommerce.Core.Abstractions;
 using ECommerce.DataAccess;
+using ECommerce.DataAccess.Abstraction;
+using ECommerce.DataAccess.Implementation;
+using ECommerce.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -31,6 +36,9 @@ namespace ECommerce.API
 
             services.AddDbContext<EShopContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("EShopContext"), b => b.MigrationsAssembly("ECommerce.API")));
+
+            services.AddScoped<IRepository<Product>, ProductsRepository>();
+            services.AddScoped<IProductsService, ProductsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

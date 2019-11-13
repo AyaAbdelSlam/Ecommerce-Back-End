@@ -7,7 +7,7 @@ using System.Text;
 
 namespace ECommerce.Entities
 {
-    public class CartItem:IEntity
+    public class User:IEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -21,6 +21,8 @@ namespace ECommerce.Entities
         [Timestamp]
         public byte[] RowVersion { get; set; }
 
-        public int Quantity { get; set; }
+        public string FullName { get; set; }
+
+        public string Username { get; set; }
     }
 }

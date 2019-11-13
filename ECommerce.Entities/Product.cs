@@ -20,5 +20,14 @@ namespace ECommerce.Entities
 
         [Timestamp]
         public byte[] RowVersion { get; set; }
+
+        public string Name { get; set; }
+
+        public string Images { get; set; }
+
+        public float Price { get; set; }
+
+        public string FullDescription { get; set; }
+
     }
 }
