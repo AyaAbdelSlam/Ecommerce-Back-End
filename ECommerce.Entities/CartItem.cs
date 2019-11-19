@@ -18,9 +18,13 @@ namespace ECommerce.Entities
 
         public DateTime ModifiedDate { get; set; }
 
+        public Product Product { get; set; }
+
         [Timestamp]
         public byte[] RowVersion { get; set; }
 
         public int Quantity { get; set; }
+
+        public float ItemCost { get; set; }
     }
 }

@@ -18,6 +18,10 @@ namespace ECommerce.Entities
 
         public DateTime ModifiedDate { get; set; }
 
+        public IEnumerable<CartItem> CartItems { get; set; }
+
+        public float TotalCost { get; set; }
+
         [Timestamp]
         public byte[] RowVersion { get; set; }
     }

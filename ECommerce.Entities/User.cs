@@ -14,6 +14,7 @@ namespace ECommerce.Entities
         public int Id { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+
         public DateTime CreatedDate { get; set; }
 
         public DateTime ModifiedDate { get; set; }
