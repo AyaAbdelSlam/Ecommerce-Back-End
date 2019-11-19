@@ -1,5 +1,6 @@
 ﻿using ECommerce.Core.Abstractions;
 using ECommerce.Entities;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -30,7 +31,8 @@ namespace ECommerce.API.Controllers
             }
             catch (Exception ex)
             {
-                throw ex;
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    $"Failed to get All products:{ex.Message}");
             }
         }
 
@@ -47,11 +49,12 @@ namespace ECommerce.API.Controllers
                     return NotFound();
                 }
 
-                return product;
+                return Ok(product);
             }
             catch (Exception ex)
             {
-                throw ex;
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    $"Failed to get product:{ex.Message}");
             }
         }
 
@@ -73,13 +76,15 @@ namespace ECommerce.API.Controllers
             try
             {
                 await _productsService.UpdateProduct(product);
+                return Ok();
+
             }
             catch (DbUpdateConcurrencyException ex)
             {
-                throw ex;
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    $"Failed to update a product:{ex.Message}");
             }
 
-            return Ok();
         }
 
         // POST: api/Products
@@ -94,7 +99,8 @@ namespace ECommerce.API.Controllers
             }
             catch (Exception ex)
             {
-                throw ex;
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    $"Failed to get All products:{ex.Message}");
             }
 
         }
@@ -112,13 +118,15 @@ namespace ECommerce.API.Controllers
             try
             {
                 await _productsService.DeleteProduct(product);
+                return Ok(product);
+
             }
             catch (Exception ex)
             {
-                throw ex;
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    $"Failed to delete a product:{ex.Message}");
             }
 
-            return product;
         }
 
     }
