@@ -38,8 +38,8 @@ namespace ECommerce.API.Controllers
             }
         }
 
-        // GET: api/Users/3
-        [HttpGet("{id}")]
+        // GET: api/Users/Cart/3
+        [HttpGet("Cart/{id}")]
         public async Task<ActionResult<IEnumerable<User>>> GetUsersCart(int id)
         {
             try

@@ -14,7 +14,6 @@ namespace ECommerce.Entities
         public int Id { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-
         public DateTime CreatedDate { get; set; }
 
         public DateTime ModifiedDate { get; set; }
@@ -25,5 +24,8 @@ namespace ECommerce.Entities
         public string FullName { get; set; }
 
         public string Username { get; set; }
+
+        public virtual List<Cart> Cart { get; set; }
+
     }
 }

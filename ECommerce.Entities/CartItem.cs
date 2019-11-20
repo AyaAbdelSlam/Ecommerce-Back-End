@@ -18,7 +18,7 @@ namespace ECommerce.Entities
 
         public DateTime ModifiedDate { get; set; }
 
-        public Product Product { get; set; }
+        public virtual Product Product { get; set; }
 
         [Timestamp]
         public byte[] RowVersion { get; set; }

@@ -34,7 +34,13 @@ namespace ECommerce.API.Migrations
                         .IsConcurrencyToken()
                         .ValueGeneratedOnAddOrUpdate();
 
+                    b.Property<float>("TotalCost");
+
+                    b.Property<int>("UserId");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Carts");
                 });
@@ -45,10 +51,16 @@ namespace ECommerce.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("CartId");
+
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAddOrUpdate();
 
+                    b.Property<float>("ItemCost");
+
                     b.Property<DateTime>("ModifiedDate");
+
+                    b.Property<int?>("ProductId");
 
                     b.Property<int>("Quantity");
 
@@ -57,6 +69,10 @@ namespace ECommerce.API.Migrations
                         .ValueGeneratedOnAddOrUpdate();
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CartId");
+
+                    b.HasIndex("ProductId");
 
                     b.ToTable("CartItems");
                 });
@@ -87,6 +103,49 @@ namespace ECommerce.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("ECommerce.Entities.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAddOrUpdate();
+
+                    b.Property<string>("FullName");
+
+                    b.Property<DateTime>("ModifiedDate");
+
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate();
+
+                    b.Property<string>("Username");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("ECommerce.Entities.Cart", b =>
+                {
+                    b.HasOne("ECommerce.Entities.User")
+                        .WithMany("Cart")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("ECommerce.Entities.CartItem", b =>
+                {
+                    b.HasOne("ECommerce.Entities.Cart")
+                        .WithMany("CartItems")
+                        .HasForeignKey("CartId");
+
+                    b.HasOne("ECommerce.Entities.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId");
                 });
 #pragma warning restore 612, 618
         }

@@ -41,6 +41,7 @@ namespace ECommerce.API
             //Register Repositories
             services.AddScoped<IRepository<Product>, ProductsRepository>();
             services.AddScoped<IRepository<User>, UsersRepository>();
+            services.AddScoped<IRepository<Cart>, CartsRepository>();
 
             //Register Services
             services.AddScoped<IProductsService, ProductsService>();
