@@ -24,5 +24,8 @@ namespace ECommerce.Entities
 
         [Timestamp]
         public byte[] RowVersion { get; set; }
+
+        public int UserId { get; set; }
+
     }
 }

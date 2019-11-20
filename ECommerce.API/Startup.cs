@@ -34,11 +34,17 @@ namespace ECommerce.API
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+            //Register Context
             services.AddDbContext<EShopContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("EShopContext"), b => b.MigrationsAssembly("ECommerce.API")));
 
+            //Register Repositories
             services.AddScoped<IRepository<Product>, ProductsRepository>();
+            services.AddScoped<IRepository<User>, UsersRepository>();
+
+            //Register Services
             services.AddScoped<IProductsService, ProductsService>();
+            services.AddScoped<IUsersService, UsersService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
