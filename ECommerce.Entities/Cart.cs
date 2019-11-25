@@ -18,7 +18,7 @@ namespace ECommerce.Entities
 
         public DateTime ModifiedDate { get; set; }
 
-        public virtual List<CartItem> CartItems { get; set; }
+        public virtual IEnumerable<CartItem> CartItems { get; set; }
 
         public float TotalCost { get; set; }
 
@@ -26,6 +26,11 @@ namespace ECommerce.Entities
         public byte[] RowVersion { get; set; }
 
         public int UserId { get; set; }
+
+        public Cart()
+        {
+            CartItems = new List<CartItem>();
+        }
 
     }
 }
