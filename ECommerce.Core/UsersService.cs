@@ -37,5 +37,10 @@ namespace ECommerce.Core
         {
             return _cartsRepository.GetWhere(c => c.UserId == userId);
         }
+
+        public Task<User> GetUserByName(string name)
+        {
+            return _usersRepository.FindFirstByCond(u => u.FullName.Contains(name));
+        }
     }
 }

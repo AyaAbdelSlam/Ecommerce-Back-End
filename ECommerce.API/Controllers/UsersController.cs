@@ -83,6 +83,28 @@ namespace ECommerce.API.Controllers
             }
         }
 
+        // GET: api/Users/Aya
+        [HttpGet("name/{name}")]
+        public async Task<ActionResult<User>> GetUser(string name)
+        {
+            try
+            {
+                User user = await _usersService.GetUserByName(name);
+
+                if (user == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(user);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    $"Failed to get User by name:{ex.Message}");
+            }
+        }
+
         // PUT: api/Users/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUser(int id, User user)

@@ -14,7 +14,9 @@ namespace ECommerce.Core.Abstractions
 
         Task UpdateUser(User user);
 
-        Task<IEnumerable<Cart>> GetUserCarts(int userId); 
+        Task<IEnumerable<Cart>> GetUserCarts(int userId);
+
+        Task<User> GetUserByName(string name);
         
     }
 }

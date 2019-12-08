@@ -100,7 +100,7 @@ namespace ECommerce.API.Controllers
             catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
-                    $"Failed to get All products:{ex.Message}");
+                    $"Failed to create a products:{ex.Message}");
             }
 
         }
