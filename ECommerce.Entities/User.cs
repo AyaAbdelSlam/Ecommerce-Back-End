@@ -24,5 +24,13 @@ namespace ECommerce.Entities
         public string FullName { get; set; }
 
         public string Username { get; set; }
+
+        public virtual IEnumerable<Cart> Carts { get; set; }
+
+        public User()
+        {
+            Carts = new List<Cart>();
+        }
+
     }
 }
